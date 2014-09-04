@@ -53,7 +53,7 @@ while True:
          host, port = rds_client.get_all_dbinstances(resource.physical_resource_id)[0].endpoint
          add_service(resource, host, port)
       elif resource.resource_type == 'AWS::ElastiCache::CacheCluster':
-         endpoint = elasticache_client.describe_cache_clusters(resources.physical_resource_id, show_cache_node_info=True)['DescribeCacheClustersResponse']['DescribeCacheClustersResult']['CacheClusters'][0]['CacheNodes'][0]['Endpoint']
+         endpoint = elasticache_client.describe_cache_clusters(resource.physical_resource_id, show_cache_node_info=True)['DescribeCacheClustersResponse']['DescribeCacheClustersResult']['CacheClusters'][0]['CacheNodes'][0]['Endpoint']
          add_service(resource, endpoint['Address'], endpoint['Port'])
     
    deleted_services = published_services - found_services
