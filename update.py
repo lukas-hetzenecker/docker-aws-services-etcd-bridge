@@ -39,7 +39,7 @@ while True:
    resources = cloudformation_client.list_stack_resources(STACK)
    found_services = set()
    for resource in resources:
-      if resource.resource_status != 'CREATE_COMPLETE':
+      if resource.resource_status not in ('CREATE_COMPLETE', 'UPDATE_COMPLETE'):
          # Only publish running services
          continue
       
